@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    int health;
+    public int health;
     int damage;
     float speed = 0.06f;
     // Start is called before the first frame update

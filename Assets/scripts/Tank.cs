@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Tank : MonoBehaviour
 {
     float attackrate = 1;
     public int health;
@@ -14,16 +14,17 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 100;
-        damage = 5;
+        health = 500;
+        damage = 20;
         swordmans = new List<swordsman>();
+        character=null;
         action = "move";
     }
 
     // Update is called once per frame
     void Update()
     {
-                if(action =="move"){
+        if(action =="move"){
             transform.Translate (-1*speed, 0f, 0f);
         }else if(action =="attack"){
             if(attackrate <= 0){
@@ -51,6 +52,9 @@ public class Enemy : MonoBehaviour
 	{
         if(collider2D.gameObject.tag == "Ally" ){
             swordmans.Add(collider2D.gameObject.GetComponent<swordsman>());
+            action = "attack";
+        }else if(collider2D.gameObject.tag == "Player" ){
+            character = collider2D.gameObject.GetComponent<Character>();
             action = "attack";
         }
 	}
