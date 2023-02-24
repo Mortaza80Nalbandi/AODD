@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        health = 100;
+        damage = 5;
         action = "move";
     }
 
@@ -24,10 +26,9 @@ public class Enemy : MonoBehaviour
         }
 
     }
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnCollisionEnter2D(Collision2D collision)
 	{
          action = "attack";
-
 	}
     public void damaged(int damageReceived){
         health-=damageReceived;
