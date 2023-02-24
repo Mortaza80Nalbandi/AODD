@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: arena
+    uniqueID: 1399991205
+    locked: 0
+  - name: background
+    uniqueID: 3399254261
+    locked: 0
