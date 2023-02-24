@@ -5,7 +5,6 @@ using UnityEngine;
 public class swordsman : MonoBehaviour
 {
     float attackrate = 1;
-    float timer;
     public int health;
     int damage;
     float speed = 0.01f;
@@ -15,7 +14,7 @@ public class swordsman : MonoBehaviour
     void Start()
     {
         health = 100;
-        damage = 5;
+        damage = 30;
         enemies = new List<Enemy>();
         action = "move";
     }
@@ -40,10 +39,12 @@ public class swordsman : MonoBehaviour
             attackrate -= Time.deltaTime;
         }
     }
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collider2D)
 	{
-        enemies.Add(collision.gameObject.GetComponent<Enemy>());
-        action = "attack";
+        if(collider2D.gameObject.tag == "Enemy"){
+            enemies.Add(collider2D.gameObject.GetComponent<Enemy>());
+            action = "attack";
+        }
 	}
     public void damaged(int damageReceived){
         health-=damageReceived;

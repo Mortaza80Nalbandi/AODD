@@ -24,5 +24,12 @@ public class Character : MonoBehaviour
         {
            transform.Translate (-1*speed, 0f, 0f); 
         }
+        else if (Input.GetKey(KeyCode.F))
+        {
+           damage++;
+        }
+    }
+    public void damaged(int damageReceived){
+        health-=damageReceived;
     }
 }
