@@ -10,13 +10,16 @@ public class Enemy : MonoBehaviour
     float speed = 0.01f;
     public string  action;
     List<swordsman> swordmans ;
+    List<Shooter> shooters ;
     Character character;
+    bool shooterSighted;
     // Start is called before the first frame update
     void Start()
     {
         health = 100;
         damage = 5;
         swordmans = new List<swordsman>();
+        shooters = new List<Shooter>();
         action = "move";
     }
 
@@ -38,6 +41,12 @@ public class Enemy : MonoBehaviour
                         Destroy(swordmans[0].gameObject);
                         swordmans.RemoveAt(0);
                     }
+                }else if(shooters.Count != 0){
+                    shooters[0].damaged(damage);
+                    if(shooters[0].health<=0){
+                        Destroy(shooters[0].gameObject);
+                        shooters.RemoveAt(0);
+                    }
                 } else {
                     action = "move";
                 }
@@ -50,10 +59,25 @@ public class Enemy : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider2D)
 	{
         if(collider2D.gameObject.tag == "Ally" ){
-            swordmans.Add(collider2D.gameObject.GetComponent<swordsman>());
-            action = "attack";
+            if(collider2D.gameObject.name == "Ally" ){
+                swordmans.Add(collider2D.gameObject.GetComponent<swordsman>());
+                action = "attack";
+            }else if(collider2D.gameObject.name == "Player" ){
+                character = collider2D.gameObject.GetComponent<Character>();
+                action = "attack";
+            }else if(collider2D.gameObject.name == "Shooter" ){
+
+                shooterSighted= true;
+            }
         }
+        
 	}
+    void OnTriggerExit2D(Collider2D collider2D){
+        if(collider2D.gameObject.name == "Shooter" && shooterSighted ){
+                shooters.Add(collider2D.gameObject.GetComponent<Shooter>());
+                action = "attack";
+            }
+    }
     public void damaged(int damageReceived){
         health-=damageReceived;
     }
