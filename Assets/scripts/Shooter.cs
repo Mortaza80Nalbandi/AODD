@@ -16,7 +16,7 @@ public class Shooter : MonoBehaviour
     {
         health = 100;
         damage = 10;
-        speed = 0.06f;
+        speed = 0.03f;
         attackrate = 1;
         enemies = new List<Enemy>();
         tanks = new List<Tank>();

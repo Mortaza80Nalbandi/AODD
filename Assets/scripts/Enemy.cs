@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     {
         health = 100;
         damage = 5;
-        speed = 0.06f;
+        speed = 0.03f;
         attackrate = 1;
         swordmans = new List<swordsman>();
         shooters = new List<Shooter>();

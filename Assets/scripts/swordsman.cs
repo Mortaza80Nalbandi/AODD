@@ -16,7 +16,7 @@ public class swordsman : MonoBehaviour
     {
         health = 100;
         damage = 10;
-        speed = 0.06f;
+        speed = 0.03f;
         attackrate = 1;
         enemies = new List<Enemy>();
         tanks = new List<Tank>();
@@ -59,7 +59,9 @@ public class swordsman : MonoBehaviour
         }else if(collider2D.gameObject.tag =="EnemyTank"){
             tanks.Add(collider2D.gameObject.GetComponent<Tank>());
             action = "attack";      
-        } 
+        } else if(collider2D.gameObject.tag == "AllyShooter" ){
+                shooterSighted= true;
+        }
 	}
     public void damaged(int damageReceived){
         health-=damageReceived;
