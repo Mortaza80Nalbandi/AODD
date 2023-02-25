@@ -11,8 +11,9 @@ public class Enemy : MonoBehaviour
     public string  action;
     List<swordsman> swordmans ;
     List<Shooter> shooters ;
-    Character character;
     bool shooterSighted;
+    Character character;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -66,7 +67,6 @@ public class Enemy : MonoBehaviour
                 character = collider2D.gameObject.GetComponent<Character>();
                 action = "attack";
             }else if(collider2D.gameObject.name == "Shooter" ){
-
                 shooterSighted= true;
             }
         }
@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour
         if(collider2D.gameObject.name == "Shooter" && shooterSighted ){
                 shooters.Add(collider2D.gameObject.GetComponent<Shooter>());
                 action = "attack";
-            }
+        }
     }
     public void damaged(int damageReceived){
         health-=damageReceived;

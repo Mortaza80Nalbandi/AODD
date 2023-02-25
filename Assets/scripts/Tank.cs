@@ -10,6 +10,8 @@ public class Tank : MonoBehaviour
     float speed = 0.01f;
     public string  action;
     List<swordsman> swordmans ;
+    List<Shooter> shooters ;
+    bool shooterSighted;
     Character character;
     // Start is called before the first frame update
     void Start()
@@ -56,8 +58,16 @@ public class Tank : MonoBehaviour
         }else if(collider2D.gameObject.tag == "Player" ){
             character = collider2D.gameObject.GetComponent<Character>();
             action = "attack";
+        } else if(collider2D.gameObject.name == "Shooter" ){
+                shooterSighted= true;
         }
 	}
+    void OnTriggerExit2D(Collider2D collider2D){
+        if(collider2D.gameObject.name == "Shooter" && shooterSighted ){
+                shooters.Add(collider2D.gameObject.GetComponent<Shooter>());
+                action = "attack";
+        }
+    }
     public void damaged(int damageReceived){
         health-=damageReceived;
     }
