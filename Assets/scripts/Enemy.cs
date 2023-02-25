@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    float attackrate = 1;
+    float attackrate ;
     public int health;
     int damage;
-    float speed = 0.01f;
+    float speed ;
     public string  action;
     List<swordsman> swordmans ;
     List<Shooter> shooters ;
@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
     {
         health = 100;
         damage = 5;
+        speed = 0.06f;
+        attackrate = 1;
         swordmans = new List<swordsman>();
         shooters = new List<Shooter>();
         action = "move";
@@ -39,13 +41,11 @@ public class Enemy : MonoBehaviour
                 }else if(swordmans.Count != 0){
                     swordmans[0].damaged(damage);
                     if(swordmans[0].health<=0){
-                        Destroy(swordmans[0].gameObject);
                         swordmans.RemoveAt(0);
                     }
                 }else if(shooters.Count != 0){
                     shooters[0].damaged(damage);
                     if(shooters[0].health<=0){
-                        Destroy(shooters[0].gameObject);
                         shooters.RemoveAt(0);
                     }
                 } else {
@@ -61,21 +61,19 @@ public class Enemy : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collider2D)
 	{
-        if(collider2D.gameObject.tag == "Ally" ){
-            if(collider2D.gameObject.name == "Ally" ){
-                swordmans.Add(collider2D.gameObject.GetComponent<swordsman>());
-                action = "attack";
-            }else if(collider2D.gameObject.name == "Player" ){
-                character = collider2D.gameObject.GetComponent<Character>();
-                action = "attack";
-            }else if(collider2D.gameObject.name == "Shooter" ){
+        if(collider2D.gameObject.tag == "AllySoldier" ){
+            swordmans.Add(collider2D.gameObject.GetComponent<swordsman>());
+            action = "attack";
+        }else if(collider2D.gameObject.tag == "Player" ){
+            character = collider2D.gameObject.GetComponent<Character>();
+            action = "attack";
+        } else if(collider2D.gameObject.tag == "AllyShooter" ){
                 shooterSighted= true;
-            }
         }
         
 	}
     void OnTriggerExit2D(Collider2D collider2D){
-        if(collider2D.gameObject.name == "Shooter" && shooterSighted ){
+        if(collider2D.gameObject.tag == "AllyShooter" && shooterSighted ){
                 shooters.Add(collider2D.gameObject.GetComponent<Shooter>());
                 action = "attack";
         }

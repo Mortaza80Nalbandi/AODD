@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-    float attackrate = 2;
+    float attackrate ;
     public int health;
     int damage;
-    float speed = 0.01f;
+    float speed;
     public string  action;
     List<Enemy> enemies ;
     List<Tank> tanks ;
@@ -16,6 +16,8 @@ public class Shooter : MonoBehaviour
     {
         health = 100;
         damage = 10;
+        speed = 0.06f;
+        attackrate = 1;
         enemies = new List<Enemy>();
         tanks = new List<Tank>();
         action = "move";
@@ -45,18 +47,19 @@ public class Shooter : MonoBehaviour
             }
             attackrate -= Time.deltaTime;
         }
+        if(health<=0){
+            Destroy(gameObject);
+        }
     }
     void OnTriggerEnter2D(Collider2D collider2D)
 	{
-        if(collider2D.gameObject.tag == "Enemy"){
-            if(collider2D.gameObject.name =="enemy"){
-                enemies.Add(collider2D.gameObject.GetComponent<Enemy>());
-                action = "attack";
-            }else if(collider2D.gameObject.name =="Tank"){
-                tanks.Add(collider2D.gameObject.GetComponent<Tank>());
-                action = "attack";      
-            } 
-        }
+        if(collider2D.gameObject.tag =="EnemySoldier"){
+            enemies.Add(collider2D.gameObject.GetComponent<Enemy>());
+            action = "attack";
+        }else if(collider2D.gameObject.tag =="EnemyTank"){
+            tanks.Add(collider2D.gameObject.GetComponent<Tank>());
+            action = "attack";      
+        } 
 	}
     public void damaged(int damageReceived){
         health-=damageReceived;

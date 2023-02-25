@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class swordsman : MonoBehaviour
 {
-    float attackrate = 1;
+    float attackrate ;
     public int health;
     int damage;
-    float speed = 0.01f;
+    float speed;
     public string  action;
     List<Enemy> enemies ;
     List<Tank> tanks ;
     // Start is called before the first frame update
     void Start()
     {
-        health = 1000;
-        damage = 70;
+        health = 100;
+        damage = 10;
+        speed = 0.06f;
+        attackrate = 1;
         enemies = new List<Enemy>();
         tanks = new List<Tank>();
         action = "move";
@@ -51,15 +53,13 @@ public class swordsman : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collider2D)
 	{
-        if(collider2D.gameObject.tag == "Enemy"){
-            if(collider2D.gameObject.name =="enemy"){
-                enemies.Add(collider2D.gameObject.GetComponent<Enemy>());
-                action = "attack";
-            }else if(collider2D.gameObject.name =="Tank"){
-                tanks.Add(collider2D.gameObject.GetComponent<Tank>());
-                action = "attack";      
-            } 
-        }
+        if(collider2D.gameObject.tag =="EnemySoldier"){
+            enemies.Add(collider2D.gameObject.GetComponent<Enemy>());
+            action = "attack";
+        }else if(collider2D.gameObject.tag =="EnemyTank"){
+            tanks.Add(collider2D.gameObject.GetComponent<Tank>());
+            action = "attack";      
+        } 
 	}
     public void damaged(int damageReceived){
         health-=damageReceived;

@@ -12,6 +12,7 @@ public class Character : MonoBehaviour
     {
         health = 100;
         damage = 5;
+        speed = 0.06f;
     }
 
     // Update is called once per frame
@@ -27,6 +28,9 @@ public class Character : MonoBehaviour
         else if (Input.GetKey(KeyCode.F))
         {
            damage++;
+        }
+        if(health<=0){
+            Destroy(gameObject);
         }
     }
     public void damaged(int damageReceived){
