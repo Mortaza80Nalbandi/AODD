@@ -31,13 +31,11 @@ public class Shooter : MonoBehaviour
                 if(tanks.Count != 0){
                     tanks[0].damaged(damage);
                     if(tanks[0].health<=0){
-                        Destroy(tanks[0].gameObject);
                         tanks.RemoveAt(0);
                     }
                 }else if(enemies.Count != 0){
                     enemies[0].damaged(damage);
                     if(enemies[0].health<=0){
-                        Destroy(enemies[0].gameObject);
                         enemies.RemoveAt(0);
                     }
                 }else{

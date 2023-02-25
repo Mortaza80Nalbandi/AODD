@@ -55,7 +55,9 @@ public class Enemy : MonoBehaviour
             }
             attackrate -= Time.deltaTime;
         }
-
+        if(health<=0){
+            Destroy(gameObject);
+        }
     }
     void OnTriggerEnter2D(Collider2D collider2D)
 	{
