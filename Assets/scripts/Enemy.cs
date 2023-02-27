@@ -76,6 +76,8 @@ public class Enemy : MonoBehaviour
         if(collider2D.gameObject.tag == "AllyShooter" && shooterSighted ){
                 shooters.Add(collider2D.gameObject.GetComponent<Shooter>());
                 action = "attack";
+        }else if(collider2D.gameObject.tag == "Player"){
+            character = null;
         }
     }
     public void damaged(int damageReceived){

@@ -72,6 +72,12 @@ public class EnemyArcher : MonoBehaviour
         }
         
 	}
+
+    void OnTriggerExit2D(Collider2D collider2D){
+        if(collider2D.gameObject.tag == "Player"){
+            character = null;
+        }
+    }
     public void damaged(int damageReceived){
         health-=damageReceived;
     }

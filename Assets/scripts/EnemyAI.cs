@@ -28,7 +28,7 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         if(spawnRate<0){
-            if(enemies.Count<=10){
+            if(enemies.Count<=5){
                 spawnUnit("Enemy");
                 spawnRate = 3;
             }else if(enemyArchers.Count<=5){
@@ -47,12 +47,15 @@ public class EnemyAI : MonoBehaviour
        switch(type){
         case "Enemy":
         GameObject enemy = Instantiate(enemyPrefab,transform.position,Quaternion.identity);
+        enemies.Add(enemy.GetComponent<Enemy>());
         break;
         case "EnemyArcher":
         GameObject enemyArcher = Instantiate(enemyArcherPrefab,transform.position,Quaternion.identity);
+        enemyArchers.Add(enemyArcher.GetComponent<EnemyArcher>());
         break;
         case "Tank":
         GameObject tank = Instantiate(tankPrefab,transform.position,Quaternion.identity);
+        tanks.Add(tank.GetComponent<Tank>());
         break;
        }
     }

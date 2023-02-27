@@ -10,7 +10,7 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 100;
+        health = 100000;
         damage = 5;
         speed = 0.06f;
     }
