@@ -11,6 +11,8 @@ public class Shooter : MonoBehaviour
     public string  action;
     List<Enemy> enemies ;
     List<Tank> tanks ;
+    List<EnemyArcher> enemyArchers ;
+    bool shooterSighted;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,7 @@ public class Shooter : MonoBehaviour
         attackrate = 1;
         enemies = new List<Enemy>();
         tanks = new List<Tank>();
+        enemyArchers = new List<EnemyArcher>();
         action = "move";
     }
 
@@ -39,6 +42,12 @@ public class Shooter : MonoBehaviour
                     enemies[0].damaged(damage);
                     if(enemies[0].health<=0){
                         enemies.RemoveAt(0);
+                    }
+                }if(enemyArchers.Count != 0){
+                    enemyArchers[0].damaged(damage);
+                    if(enemyArchers[0].health<=0){
+                        enemyArchers.RemoveAt(0);
+                        shooterSighted = false;
                     }
                 }else{
                     action = "move";
@@ -61,6 +70,13 @@ public class Shooter : MonoBehaviour
             action = "attack";      
         } 
 	}
+
+    void OnTriggerExit2D(Collider2D collider2D){
+        if(collider2D.gameObject.tag == "EnemyArcher" && shooterSighted ){
+                enemyArchers.Add(collider2D.gameObject.GetComponent<EnemyArcher>());
+                action = "attack";
+        }
+    }
     public void damaged(int damageReceived){
         health-=damageReceived;
     }
