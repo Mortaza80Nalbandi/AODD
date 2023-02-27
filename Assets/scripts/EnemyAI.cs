@@ -9,7 +9,9 @@ public class EnemyAI : MonoBehaviour
     List<EnemyArcher> enemyArchers ;
     List<swordsman> swordmans ;
     List<Shooter> shooters ;
-    
+    public GameObject enemyPrefab ;
+    public GameObject tankPrefab ;
+    public GameObject enemyArcherPrefab ;
     float spawnRate ;
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,7 @@ public class EnemyAI : MonoBehaviour
         enemyArchers = new List<EnemyArcher>();
         swordmans = new List<swordsman>();
         shooters = new List<Shooter>();
+        spawnRate=3;
     }
 
     // Update is called once per frame
@@ -27,16 +30,31 @@ public class EnemyAI : MonoBehaviour
         if(spawnRate<0){
             if(enemies.Count<=10){
                 spawnUnit("Enemy");
+                spawnRate = 3;
             }else if(enemyArchers.Count<=5){
                 spawnUnit("EnemyArcher");
+                spawnRate=3;
             }else if(tanks.Count<=2){
                 spawnUnit("Tank");
+                spawnRate=3;
             }
+            
         }
+        spawnRate -= Time.deltaTime;
         
     }
     void spawnUnit(string type){
-       int x=0;
+       switch(type){
+        case "Enemy":
+        GameObject enemy = Instantiate(enemyPrefab,transform.position,Quaternion.identity);
+        break;
+        case "EnemyArcher":
+        GameObject enemyArcher = Instantiate(enemyArcherPrefab,transform.position,Quaternion.identity);
+        break;
+        case "Tank":
+        GameObject tank = Instantiate(tankPrefab,transform.position,Quaternion.identity);
+        break;
+       }
     }
     
 }
