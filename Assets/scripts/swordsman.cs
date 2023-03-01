@@ -43,14 +43,14 @@ public class swordsman : MonoBehaviour
                     if(enemies[0].health<=0){
                         enemies.RemoveAt(0);
                     }
-                }if(enemyArchers.Count != 0){
+                }else if(enemyArchers.Count != 0){
                     enemyArchers[0].damaged(damage);
                     if(enemyArchers[0].health<=0){
                         enemyArchers.RemoveAt(0);
-                        shooterSighted = false;
                     }
                 }else{
                     action = "move";
+                    shooterSighted = false;
                 }
                 attackrate = 1; 
             }
