@@ -12,6 +12,7 @@ public class EnemyArcher : MonoBehaviour
     List<swordsman> swordmans ;
     List<Shooter> shooters ;
     Character character;
+    Score score;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class EnemyArcher : MonoBehaviour
         shooters = new List<Shooter>();
         character=null;
         action = "move";
+        score = GameObject.Find("CoreLoop").GetComponent<Score>();
     }
 
     // Update is called once per frame
@@ -55,6 +57,7 @@ public class EnemyArcher : MonoBehaviour
             attackrate -= Time.deltaTime;
         }
         if(health<=0){
+            score.increaseScore(8);
             Destroy(gameObject);
         }
     }
@@ -69,6 +72,9 @@ public class EnemyArcher : MonoBehaviour
         } else if(collider2D.gameObject.tag == "AllyShooter" ){
                  shooters.Add(collider2D.gameObject.GetComponent<Shooter>());
                 action = "attack";
+        }else  if(collider2D.gameObject.tag =="MainBase"){
+            transform.Translate (speed, 0f, 0f); 
+            action = "stop";
         }
         
 	}

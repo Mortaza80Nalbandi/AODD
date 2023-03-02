@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 420549463448232027}
   - component: {fileID: -3828403611981918721}
   - component: {fileID: -1254612510537912859}
-  - component: {fileID: -2549736228621567418}
+  - component: {fileID: 866593243188648137}
   m_Layer: 0
   m_Name: swordman
   m_TagString: AllySoldier
@@ -120,7 +120,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!61 &-2549736228621567418
+--- !u!61 &866593243188648137
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -13,6 +13,7 @@ public class Tank : MonoBehaviour
     List<Shooter> shooters ;
     bool shooterSighted;
     Character character;
+    Score score;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class Tank : MonoBehaviour
         shooters = new List<Shooter>();
         character=null;
         action = "move";
+        score = GameObject.Find("CoreLoop").GetComponent<Score>();
     }
 
     // Update is called once per frame
@@ -56,6 +58,7 @@ public class Tank : MonoBehaviour
             attackrate -= Time.deltaTime;
         }
         if(health<=0){
+            score.increaseScore(20);
             Destroy(gameObject);
         }
     }
@@ -69,6 +72,9 @@ public class Tank : MonoBehaviour
             action = "attack";
         } else if(collider2D.gameObject.tag == "AllyShooter" ){
                 shooterSighted= true;
+        }else  if(collider2D.gameObject.tag =="MainBase"){
+            transform.Translate (speed, 0f, 0f); 
+            action = "stop";
         }
 	}
     void OnTriggerExit2D(Collider2D collider2D){

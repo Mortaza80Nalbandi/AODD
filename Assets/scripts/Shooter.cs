@@ -17,7 +17,7 @@ public class Shooter : MonoBehaviour
     void Start()
     {
         health = 100;
-        damage = 10;
+        damage = 30;
         speed = 0.03f;
         attackrate = 1;
         enemies = new List<Enemy>();
@@ -68,7 +68,10 @@ public class Shooter : MonoBehaviour
         }else if(collider2D.gameObject.tag =="EnemyTank"){
             tanks.Add(collider2D.gameObject.GetComponent<Tank>());
             action = "attack";      
-        } 
+        } else  if(collider2D.gameObject.tag =="EnemyBase"){
+            transform.Translate (-1*speed, 0f, 0f); 
+            action = "stop";
+        }
 	}
 
     void OnTriggerExit2D(Collider2D collider2D){

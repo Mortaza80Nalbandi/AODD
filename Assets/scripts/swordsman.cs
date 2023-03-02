@@ -17,7 +17,7 @@ public class swordsman : MonoBehaviour
     void Start()
     {
         health = 100;
-        damage = 10;
+        damage = 50;
         speed = 0.03f;
         attackrate = 1;
         enemies = new List<Enemy>();
@@ -70,6 +70,9 @@ public class swordsman : MonoBehaviour
             action = "attack";      
         } else if(collider2D.gameObject.tag == "EnemyArcher" ){
                 shooterSighted= true;
+        }else  if(collider2D.gameObject.tag =="EnemyBase"){
+            transform.Translate (-1*speed, 0f, 0f); 
+            action = "stop";
         }
 	}
 
