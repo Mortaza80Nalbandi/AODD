@@ -11,6 +11,7 @@ public class Score : MonoBehaviour
     int killedTanks;
     int killedEnemyArchers;
     int killedAllies;
+    string commands;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,10 @@ public class Score : MonoBehaviour
         score = 0;
         killedAllies = 0;
         killedEnemies = 0;
+        commands = "\n press A and D to move\n";
+        commands+="press F to attack when close range\n";
+        commands+="press Q for swordman and W for Shooter";
+        GameObject.Find("Score").GetComponent<Text>().text = "Score : "+ score.ToString () + commands; 
 
     }
 
@@ -26,7 +31,7 @@ public class Score : MonoBehaviour
     {
         
             if(score !=lastPrintedScore){
-                GameObject.Find("Score").GetComponent<Text>().text = "Score : "+ score.ToString (); 
+                GameObject.Find("Score").GetComponent<Text>().text = "Score : "+ score.ToString ()+commands ; 
 
             }
         

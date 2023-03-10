@@ -6,6 +6,7 @@ public class Character : MonoBehaviour
 {
     public int health;
     float attackrate ;
+    float healingRate ;
     int damage;
     float speed = 0.06f;
     List<Enemy> enemies ;
@@ -19,10 +20,11 @@ public class Character : MonoBehaviour
         damage = 5;
         speed = 0.06f;
         attackrate = 1;
+        healingRate = 1;
         enemies = new List<Enemy>();
         tanks = new List<Tank>();
         enemyArchers = new List<EnemyArcher>();
-         healthbarx = transform.GetChild(1).gameObject.GetComponent<healthbar>();
+        healthbarx = transform.GetChild(1).gameObject.GetComponent<healthbar>();
         healthbarx.setHealth(health,1000);
     }
     
@@ -35,32 +37,41 @@ public class Character : MonoBehaviour
         }else if (Input.GetKey(KeyCode.A))
         {
            transform.Translate (-1*speed, 0f, 0f); 
-        }
-        else if (Input.GetKey(KeyCode.F))
+        }else if (Input.GetKey(KeyCode.F))
         {
            if(attackrate <= 0){
                 if(tanks.Count != 0){
-                    tanks[0].damaged(damage);
+                    
                     if(tanks[0].health<=0){
                         tanks.RemoveAt(0);
+                    }else{
+                        tanks[0].damaged(damage);
                     }
                 }else if(enemies.Count != 0){
-                    enemies[0].damaged(damage);
+                    
                     if(enemies[0].health<=0){
                         enemies.RemoveAt(0);
+                    }else{
+                        enemies[0].damaged(damage);
                     }
                 }else if(enemyArchers.Count != 0){
-                    enemyArchers[0].damaged(damage);
                     if(enemyArchers[0].health<=0){
                         enemyArchers.RemoveAt(0);
+                    }else{
+                        enemyArchers[0].damaged(damage);
                     }
                 }
                 attackrate = 1; 
             }
         }
          attackrate -= Time.deltaTime;
+         healingRate-= Time.deltaTime;
         if(health<=0){
             Destroy(gameObject);
+        }
+        if(health<1000 &&healingRate<=0){
+            healingRate=1;
+            health += 5;
         }
     }
      void OnTriggerEnter2D(Collider2D collider2D)

@@ -38,20 +38,25 @@ public class Shooter : MonoBehaviour
 	    }else if(action =="attack"){
             if(attackrate <= 0){
                 if(tanks.Count != 0){
-                    tanks[0].damaged(damage);
+                    
                     if(tanks[0].health<=0){
                         tanks.RemoveAt(0);
+                    }else{
+                        tanks[0].damaged(damage);
                     }
                 }else if(enemies.Count != 0){
-                    enemies[0].damaged(damage);
                     if(enemies[0].health<=0){
                         enemies.RemoveAt(0);
+                    }else {
+                        enemies[0].damaged(damage);
                     }
                 }else if(enemyArchers.Count != 0){
-                    enemyArchers[0].damaged(damage);
+                    
                     if(enemyArchers[0].health<=0){
                         enemyArchers.RemoveAt(0);
                         shooterSighted = false;
+                    }else{
+                        enemyArchers[0].damaged(damage);
                     }
                 }else if(baseSighted){
                     action = "stop";
@@ -74,6 +79,9 @@ public class Shooter : MonoBehaviour
         }else if(collider2D.gameObject.tag =="EnemyTank"){
             tanks.Add(collider2D.gameObject.GetComponent<Tank>());
             action = "attack";      
+        } else if(collider2D.gameObject.tag == "EnemyArcher" ){
+                enemyArchers.Add(collider2D.gameObject.transform.parent.gameObject.GetComponent<EnemyArcher>());
+                action = "attack";
         } else  if(collider2D.gameObject.tag =="EnemyBase"){
             transform.Translate (-1*speed, 0f, 0f); 
             baseSighted=true;
@@ -81,13 +89,8 @@ public class Shooter : MonoBehaviour
         }
 	}
 
-    void OnTriggerExit2D(Collider2D collider2D){
-        if(collider2D.gameObject.tag == "EnemyArcher" && shooterSighted ){
-                enemyArchers.Add(collider2D.gameObject.GetComponent<EnemyArcher>());
-                action = "attack";
-        }
-    }
     public void damaged(int damageReceived){
         health-=damageReceived;
+        healthbarx.setHealth(health,100);
     }
 }

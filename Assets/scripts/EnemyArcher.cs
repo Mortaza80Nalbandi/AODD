@@ -38,19 +38,25 @@ public class EnemyArcher : MonoBehaviour
         }else if(action =="attack"){
             if(attackrate <= 0){
                 if(character != null){
-                    character.damaged(damage);
+                    
                     if(character.health<=0){
                         character =null;
+                    }else{
+                        character.damaged(damage);
                     }
                 }else if(swordmans.Count != 0){
-                    swordmans[0].damaged(damage);
+                    
                     if(swordmans[0].health<=0){
                         swordmans.RemoveAt(0);
+                    } else{
+                        swordmans[0].damaged(damage);
                     }
                 }else if(shooters.Count != 0){
-                    shooters[0].damaged(damage);
+                    
                     if(shooters[0].health<=0){
                         shooters.RemoveAt(0);
+                    }else{
+                        shooters[0].damaged(damage);
                     }
                 } else {
                     action = "move";
@@ -74,7 +80,7 @@ public class EnemyArcher : MonoBehaviour
             character = collider2D.gameObject.GetComponent<Character>();
             action = "attack";
         } else if(collider2D.gameObject.tag == "AllyShooter" ){
-                 shooters.Add(collider2D.gameObject.GetComponent<Shooter>());
+                shooters.Add(collider2D.gameObject.transform.parent.gameObject.GetComponent<Shooter>());
                 action = "attack";
         }else  if(collider2D.gameObject.tag =="MainBase"){
             transform.Translate (speed, 0f, 0f); 

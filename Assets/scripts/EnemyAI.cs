@@ -7,8 +7,6 @@ public class EnemyAI : MonoBehaviour
     int enemies ;
     int tanks ;
     int enemyArchers ;
-    List<swordsman> swordmans ;
-    List<Shooter> shooters ;
     public GameObject enemyPrefab ;
     public GameObject tankPrefab ;
     public GameObject enemyArcherPrefab ;
@@ -19,8 +17,6 @@ public class EnemyAI : MonoBehaviour
         enemies = 0;
         tanks = 0;
         enemyArchers = 0;
-        swordmans = new List<swordsman>();
-        shooters = new List<Shooter>();
         spawnRate=3;
     }
 
@@ -28,7 +24,7 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         if(spawnRate<0){
-            if(enemies<=500){
+            if(enemies<=5){
                 spawnUnit("Enemy");
                 spawnRate = 3;
             }else if(enemyArchers<=5){
