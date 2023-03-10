@@ -14,6 +14,7 @@ public class Shooter : MonoBehaviour
     List<EnemyArcher> enemyArchers ;
     bool shooterSighted;
     bool baseSighted;
+    healthbar healthbarx;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,8 @@ public class Shooter : MonoBehaviour
         tanks = new List<Tank>();
         enemyArchers = new List<EnemyArcher>();
         action = "move";
+        healthbarx = transform.GetChild(0).gameObject.GetComponent<healthbar>();
+        healthbarx.setHealth(health,100);
     }
 
     // Update is called once per frame

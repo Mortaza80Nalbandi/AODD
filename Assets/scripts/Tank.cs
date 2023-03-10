@@ -15,6 +15,7 @@ public class Tank : MonoBehaviour
     Character character;
     Score score;
     bool baseSighted;
+    healthbar healthbarx;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,8 @@ public class Tank : MonoBehaviour
         character=null;
         action = "move";
         score = GameObject.Find("CoreLoop").GetComponent<Score>();
+        healthbarx = transform.GetChild(0).gameObject.GetComponent<healthbar>();
+        healthbarx.setHealth(health,500);
     }
 
     // Update is called once per frame
@@ -92,5 +95,6 @@ public class Tank : MonoBehaviour
     }
     public void damaged(int damageReceived){
         health-=damageReceived;
+        healthbarx.setHealth(health,500);
     }
 }

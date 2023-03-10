@@ -14,17 +14,20 @@ public class swordsman : MonoBehaviour
     List<EnemyArcher> enemyArchers ;
     bool shooterSighted;
     bool baseSighted;
+    healthbar healthbarx;
     // Start is called before the first frame update
     void Start()
     {
         health = 100;
-        damage = 50;
+        damage = 10;
         speed = 0.03f;
         attackrate = 1;
         enemies = new List<Enemy>();
         tanks = new List<Tank>();
         enemyArchers = new List<EnemyArcher>();
         action = "move";
+         healthbarx = transform.GetChild(0).gameObject.GetComponent<healthbar>();
+        healthbarx.setHealth(health,100);
     }
 
     // Update is called once per frame
@@ -39,7 +42,7 @@ public class swordsman : MonoBehaviour
                     if(tanks[0].health<=0){
                         tanks.RemoveAt(0);
                     }
-                }else if(enemies.Count != 0){
+                }else if(enemies.Count != 0 && enemies[0].health > 0){
                     enemies[0].damaged(damage);
                     if(enemies[0].health<=0){
                         enemies.RemoveAt(0);
@@ -88,5 +91,6 @@ public class swordsman : MonoBehaviour
     }
     public void damaged(int damageReceived){
         health-=damageReceived;
+        healthbarx.setHealth(health,100);
     }
 }

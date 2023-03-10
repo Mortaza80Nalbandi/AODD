@@ -28,7 +28,7 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         if(spawnRate<0){
-            if(enemies<=5){
+            if(enemies<=500){
                 spawnUnit("Enemy");
                 spawnRate = 3;
             }else if(enemyArchers<=5){

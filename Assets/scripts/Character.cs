@@ -8,20 +8,24 @@ public class Character : MonoBehaviour
     float attackrate ;
     int damage;
     float speed = 0.06f;
+    List<Enemy> enemies ;
+    List<Tank> tanks ;
+    List<EnemyArcher> enemyArchers ;
+    healthbar healthbarx;
     // Start is called before the first frame update
     void Start()
     {
-        health = 100000;
+        health = 1000;
         damage = 5;
         speed = 0.06f;
         attackrate = 1;
         enemies = new List<Enemy>();
         tanks = new List<Tank>();
         enemyArchers = new List<EnemyArcher>();
+         healthbarx = transform.GetChild(1).gameObject.GetComponent<healthbar>();
+        healthbarx.setHealth(health,1000);
     }
-    List<Enemy> enemies ;
-    List<Tank> tanks ;
-    List<EnemyArcher> enemyArchers ;
+    
     // Update is called once per frame
     void Update()
     {
@@ -81,5 +85,6 @@ public class Character : MonoBehaviour
     }
     public void damaged(int damageReceived){
         health-=damageReceived;
+        healthbarx.setHealth(health,1000);
     }
 }

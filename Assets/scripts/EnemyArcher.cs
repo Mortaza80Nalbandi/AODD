@@ -13,10 +13,11 @@ public class EnemyArcher : MonoBehaviour
     List<Shooter> shooters ;
     Character character;
     Score score;
+    healthbar healthbarx;
     // Start is called before the first frame update
     void Start()
     {
-        health = 500;
+        health = 100;
         damage = 30;
         speed = 0.01f;
         attackrate = 2;
@@ -25,6 +26,8 @@ public class EnemyArcher : MonoBehaviour
         character=null;
         action = "move";
         score = GameObject.Find("CoreLoop").GetComponent<Score>();
+         healthbarx = transform.GetChild(0).gameObject.GetComponent<healthbar>();
+        healthbarx.setHealth(health,100);
     }
 
     // Update is called once per frame
@@ -87,5 +90,6 @@ public class EnemyArcher : MonoBehaviour
     }
     public void damaged(int damageReceived){
         health-=damageReceived;
+        healthbarx.setHealth(health,100);
     }
 }
