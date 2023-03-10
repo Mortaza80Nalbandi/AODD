@@ -13,6 +13,7 @@ public class swordsman : MonoBehaviour
     List<Tank> tanks ;
     List<EnemyArcher> enemyArchers ;
     bool shooterSighted;
+    bool baseSighted;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +49,8 @@ public class swordsman : MonoBehaviour
                     if(enemyArchers[0].health<=0){
                         enemyArchers.RemoveAt(0);
                     }
+                }else if(baseSighted){
+                    action = "stop";
                 }else{
                     action = "move";
                     shooterSighted = false;
@@ -72,6 +75,7 @@ public class swordsman : MonoBehaviour
                 shooterSighted= true;
         }else  if(collider2D.gameObject.tag =="EnemyBase"){
             transform.Translate (-1*speed, 0f, 0f); 
+            baseSighted =true;
             action = "stop";
         }
 	}

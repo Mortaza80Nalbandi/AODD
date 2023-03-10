@@ -13,6 +13,7 @@ public class Shooter : MonoBehaviour
     List<Tank> tanks ;
     List<EnemyArcher> enemyArchers ;
     bool shooterSighted;
+    bool baseSighted;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +50,8 @@ public class Shooter : MonoBehaviour
                         enemyArchers.RemoveAt(0);
                         shooterSighted = false;
                     }
+                }else if(baseSighted){
+                    action = "stop";
                 }else{
                     action = "move";
                 }
@@ -70,6 +73,7 @@ public class Shooter : MonoBehaviour
             action = "attack";      
         } else  if(collider2D.gameObject.tag =="EnemyBase"){
             transform.Translate (-1*speed, 0f, 0f); 
+            baseSighted=true;
             action = "stop";
         }
 	}

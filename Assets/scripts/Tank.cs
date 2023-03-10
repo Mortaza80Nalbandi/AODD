@@ -14,6 +14,7 @@ public class Tank : MonoBehaviour
     bool shooterSighted;
     Character character;
     Score score;
+    bool baseSighted;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +51,8 @@ public class Tank : MonoBehaviour
                     if(shooters[0].health<=0){
                         shooters.RemoveAt(0);
                     }
+                }else if(baseSighted){
+                    action = "stop";
                 } else {
                     action = "move";
                 }
@@ -59,6 +62,7 @@ public class Tank : MonoBehaviour
         }
         if(health<=0){
             score.increaseScore(20);
+            GameObject.Find("EnemyBase").GetComponent<EnemyAI>().killedTank();
             Destroy(gameObject);
         }
     }
@@ -74,6 +78,7 @@ public class Tank : MonoBehaviour
                 shooterSighted= true;
         }else  if(collider2D.gameObject.tag =="MainBase"){
             transform.Translate (speed, 0f, 0f); 
+            baseSighted= true;
             action = "stop";
         }
 	}

@@ -58,6 +58,7 @@ public class EnemyArcher : MonoBehaviour
         }
         if(health<=0){
             score.increaseScore(8);
+            GameObject.Find("EnemyBase").GetComponent<EnemyAI>().killedarcher();
             Destroy(gameObject);
         }
     }

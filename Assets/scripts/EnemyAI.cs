@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    List<Enemy> enemies ;
-    List<Tank> tanks ;
-    List<EnemyArcher> enemyArchers ;
+    int enemies ;
+    int tanks ;
+    int enemyArchers ;
     List<swordsman> swordmans ;
     List<Shooter> shooters ;
     public GameObject enemyPrefab ;
@@ -16,9 +16,9 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemies = new List<Enemy>();
-        tanks = new List<Tank>();
-        enemyArchers = new List<EnemyArcher>();
+        enemies = 0;
+        tanks = 0;
+        enemyArchers = 0;
         swordmans = new List<swordsman>();
         shooters = new List<Shooter>();
         spawnRate=3;
@@ -28,13 +28,13 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         if(spawnRate<0){
-            if(enemies.Count<=5){
+            if(enemies<=5){
                 spawnUnit("Enemy");
                 spawnRate = 3;
-            }else if(enemyArchers.Count<=5){
+            }else if(enemyArchers<=5){
                 spawnUnit("EnemyArcher");
                 spawnRate=3;
-            }else if(tanks.Count<=2){
+            }else if(tanks<=2){
                 spawnUnit("Tank");
                 spawnRate=3;
             }
@@ -47,17 +47,25 @@ public class EnemyAI : MonoBehaviour
        switch(type){
         case "Enemy":
         GameObject enemy = Instantiate(enemyPrefab,transform.position,Quaternion.identity);
-        enemies.Add(enemy.GetComponent<Enemy>());
+        enemies++;
         break;
         case "EnemyArcher":
         GameObject enemyArcher = Instantiate(enemyArcherPrefab,transform.position,Quaternion.identity);
-        enemyArchers.Add(enemyArcher.GetComponent<EnemyArcher>());
+        enemyArchers++;
         break;
         case "Tank":
         GameObject tank = Instantiate(tankPrefab,transform.position,Quaternion.identity);
-        tanks.Add(tank.GetComponent<Tank>());
+        tanks++;
         break;
        }
     }
-    
+    public void killedenemy(){
+        enemies--;
+    }
+    public void killedTank(){
+        tanks--;
+    }
+    public void killedarcher(){
+        enemyArchers--;
+    }
 }

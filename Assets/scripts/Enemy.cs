@@ -12,8 +12,10 @@ public class Enemy : MonoBehaviour
     List<swordsman> swordmans ;
     List<Shooter> shooters ;
     bool shooterSighted;
+    bool baseSighted;
     Character character;
     Score score;
+    healthbar healthbarx;
     
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,8 @@ public class Enemy : MonoBehaviour
         shooters = new List<Shooter>();
         action = "move";
         score = GameObject.Find("CoreLoop").GetComponent<Score>();
+        healthbarx = transform.GetChild(0).gameObject.GetComponent<healthbar>();
+        healthbarx.setHealth(health,100);
     }
 
     // Update is called once per frame
@@ -50,6 +54,8 @@ public class Enemy : MonoBehaviour
                     if(shooters[0].health<=0){
                         shooters.RemoveAt(0);
                     }
+                }else if(baseSighted){
+                    action = "stop";
                 } else {
                     action = "move";
                 }
@@ -59,6 +65,7 @@ public class Enemy : MonoBehaviour
         }
         if(health<=0){
             score.increaseScore(5);
+            GameObject.Find("EnemyBase").GetComponent<EnemyAI>().killedenemy();
             Destroy(gameObject);
         }
     }
@@ -74,6 +81,7 @@ public class Enemy : MonoBehaviour
                 shooterSighted= true;
         }else  if(collider2D.gameObject.tag =="MainBase"){
             transform.Translate (speed, 0f, 0f); 
+            baseSighted= true;
             action = "stop";
         }
         
@@ -88,5 +96,6 @@ public class Enemy : MonoBehaviour
     }
     public void damaged(int damageReceived){
         health-=damageReceived;
+        healthbarx.setHealth(health,100);
     }
 }
