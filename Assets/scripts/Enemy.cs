@@ -5,13 +5,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     float attackrate ;
-    public int health;
+    public float health;
     int damage;
     float speed ;
     public string  action;
     List<swordsman> swordmans ;
     List<Shooter> shooters ;
-    bool shooterSighted;
     bool baseSighted;
     Character character;
     Score score;
@@ -100,5 +99,9 @@ public class Enemy : MonoBehaviour
     public void damaged(int damageReceived){
         health-=damageReceived;
         healthbarx.setHealth(health,100);
+    }
+
+    public float getHealth(){
+        return health;
     }
 }

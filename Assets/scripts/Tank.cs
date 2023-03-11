@@ -5,13 +5,13 @@ using UnityEngine;
 public class Tank : MonoBehaviour
 {
     float attackrate ;
-    public int health;
+    public float health;
+    private float maxHealth = 500;
     int damage;
     float speed ;
     public string  action;
     List<swordsman> swordmans ;
     List<Shooter> shooters ;
-    bool shooterSighted;
     Character character;
     Score score;
     bool baseSighted;
@@ -100,5 +100,8 @@ public class Tank : MonoBehaviour
     public void damaged(int damageReceived){
         health-=damageReceived;
         healthbarx.setHealth(health,500);
+    }
+    public float getHealth(){
+        return health;
     }
 }

@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyArcher : MonoBehaviour
 {
     float attackrate ;
-    public int health;
+    public float health;
+    private float maxHealth = 100;
     int damage;
     float speed ;
     public string  action;
@@ -17,7 +18,7 @@ public class EnemyArcher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 100;
+        health = maxHealth;
         damage = 30;
         speed = 0.01f;
         attackrate = 2;
@@ -97,5 +98,8 @@ public class EnemyArcher : MonoBehaviour
     public void damaged(int damageReceived){
         health-=damageReceived;
         healthbarx.setHealth(health,100);
+    }
+    public float getHealth(){
+        return health;
     }
 }

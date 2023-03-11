@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public int health;
+    public float health;
+    private float maxHealth = 1000;
     float attackrate ;
     float healingRate ;
     int damage;
@@ -16,7 +17,7 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 1000;
+        health = maxHealth;
         damage = 5;
         speed = 0.06f;
         attackrate = 1;

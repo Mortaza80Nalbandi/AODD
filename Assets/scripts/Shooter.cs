@@ -5,7 +5,8 @@ using UnityEngine;
 public class Shooter : MonoBehaviour
 {
     float attackrate ;
-    public int health;
+    public float health;
+    private float maxHealth = 100;
     int damage;
     float speed;
     public string  action;
@@ -18,7 +19,7 @@ public class Shooter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 100;
+        health = maxHealth;
         damage = 30;
         speed = 0.03f;
         attackrate = 1;
@@ -27,7 +28,7 @@ public class Shooter : MonoBehaviour
         enemyArchers = new List<EnemyArcher>();
         action = "move";
         healthbarx = transform.GetChild(0).gameObject.GetComponent<healthbar>();
-        healthbarx.setHealth(health,100);
+        healthbarx.setHealth(health,maxHealth);
     }
 
     // Update is called once per frame
@@ -92,5 +93,8 @@ public class Shooter : MonoBehaviour
     public void damaged(int damageReceived){
         health-=damageReceived;
         healthbarx.setHealth(health,100);
+    }
+    public float getHealth(){
+        return health;
     }
 }
