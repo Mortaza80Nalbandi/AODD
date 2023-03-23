@@ -13,7 +13,6 @@ public class Shooter : MonoBehaviour
     List<Enemy> enemies ;
     List<Tank> tanks ;
     List<EnemyArcher> enemyArchers ;
-    bool shooterSighted;
     bool baseSighted;
     healthbar healthbarx;
     // Start is called before the first frame update
@@ -55,7 +54,6 @@ public class Shooter : MonoBehaviour
                     
                     if(enemyArchers[0].health<=0){
                         enemyArchers.RemoveAt(0);
-                        shooterSighted = false;
                     }else{
                         enemyArchers[0].damaged(damage);
                     }

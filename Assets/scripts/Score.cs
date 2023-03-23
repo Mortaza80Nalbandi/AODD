@@ -6,19 +6,13 @@ public class Score : MonoBehaviour
 {
     private int score;
     private int lastPrintedScore;
-    string dificality;
-    int killedEnemies;
-    int killedTanks;
-    int killedEnemyArchers;
-    int killedAllies;
+
     string commands;
     // Start is called before the first frame update
     void Start()
     {
-        dificality = "easy";
         score = 0;
-        killedAllies = 0;
-        killedEnemies = 0;
+
         commands = "\n press A and D to move\n";
         commands+="press F to attack when close range\n";
         commands+="press Q for swordman and W for Shooter";

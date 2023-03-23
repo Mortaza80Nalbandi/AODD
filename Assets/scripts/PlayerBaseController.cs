@@ -6,27 +6,34 @@ public class PlayerBaseController : MonoBehaviour
 {
     public GameObject shooterPrefab ;
     public GameObject swordsmanPrefab ;
-    float spawnRate ;
+    float swordmanSpawnRate ;
+    float shooterSpawnRate ;
+    int resources;
     // Start is called before the first frame update
     void Start()
     {
-        spawnRate=3;
+        swordmanSpawnRate=3;
+        shooterSpawnRate = 3;
+        resources = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(spawnRate<0){
-            if(Input.GetKey(KeyCode.Q)){
+        if(Input.GetKey(KeyCode.Q)){
+            if(swordmanSpawnRate<0){
                 spawnUnit("Swordsman");
-                spawnRate = 3;
-            }else if(Input.GetKey(KeyCode.W)){
-                spawnUnit("Shooter");
-                spawnRate=3;
+                swordmanSpawnRate = 3;
             }
-            
+        }else if(Input.GetKey(KeyCode.W)){
+            if(shooterSpawnRate<0){
+                spawnUnit("Shooter");
+                shooterSpawnRate=3;
+            }
         }
-        spawnRate -= Time.deltaTime;
+            
+        shooterSpawnRate -= Time.deltaTime;
+        swordmanSpawnRate -= Time.deltaTime;
         
     }
     void spawnUnit(string type){

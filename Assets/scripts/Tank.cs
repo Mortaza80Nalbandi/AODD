@@ -29,7 +29,7 @@ public class Tank : MonoBehaviour
         action = "move";
         score = GameObject.Find("CoreLoop").GetComponent<Score>();
         healthbarx = transform.GetChild(0).gameObject.GetComponent<healthbar>();
-        healthbarx.setHealth(health,500);
+        healthbarx.setHealth(health,maxHealth);
     }
 
     // Update is called once per frame
@@ -99,7 +99,7 @@ public class Tank : MonoBehaviour
     }
     public void damaged(int damageReceived){
         health-=damageReceived;
-        healthbarx.setHealth(health,500);
+        healthbarx.setHealth(health,maxHealth);
     }
     public float getHealth(){
         return health;

@@ -13,7 +13,7 @@ public class swordsman : MonoBehaviour
     List<Enemy> enemies ;
     List<Tank> tanks ;
     List<EnemyArcher> enemyArchers ;
-    bool shooterSighted;
+
     bool baseSighted;
     healthbar healthbarx;
     // Start is called before the first frame update
@@ -61,7 +61,6 @@ public class swordsman : MonoBehaviour
                     action = "stop";
                 }else{
                     action = "move";
-                    shooterSighted = false;
                 }
                 attackrate = 1; 
             }
