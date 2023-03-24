@@ -16,10 +16,11 @@ public class Tank : MonoBehaviour
     Score score;
     bool baseSighted;
     healthbar healthbarx;
+    EnemyAI enemyAI;
     // Start is called before the first frame update
     void Start()
     {
-        health = 500;
+        health = maxHealth;
         damage = 30;
         speed = 0.01f;
         attackrate = 2;
@@ -29,6 +30,7 @@ public class Tank : MonoBehaviour
         action = "move";
         score = GameObject.Find("CoreLoop").GetComponent<Score>();
         healthbarx = transform.GetChild(0).gameObject.GetComponent<healthbar>();
+        enemyAI = GameObject.Find("EnemyBase").GetComponent<EnemyAI>();
         healthbarx.setHealth(health,maxHealth);
     }
 
@@ -71,7 +73,7 @@ public class Tank : MonoBehaviour
         }
         if(health<=0){
             score.increaseScore(20);
-            GameObject.Find("EnemyBase").GetComponent<EnemyAI>().killedTank();
+            enemyAI.tankDied();
             Destroy(gameObject);
         }
     }

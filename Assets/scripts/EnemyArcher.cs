@@ -15,6 +15,7 @@ public class EnemyArcher : MonoBehaviour
     Character character;
     Score score;
     healthbar healthbarx;
+    EnemyAI enemyAI;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,7 @@ public class EnemyArcher : MonoBehaviour
         character=null;
         action = "move";
         score = GameObject.Find("CoreLoop").GetComponent<Score>();
+        enemyAI = GameObject.Find("EnemyBase").GetComponent<EnemyAI>();
          healthbarx = transform.GetChild(0).gameObject.GetComponent<healthbar>();
         healthbarx.setHealth(health,100);
     }
@@ -68,7 +70,7 @@ public class EnemyArcher : MonoBehaviour
         }
         if(health<=0){
             score.increaseScore(8);
-            GameObject.Find("EnemyBase").GetComponent<EnemyAI>().killedarcher();
+            enemyAI.archerDied();
             Destroy(gameObject);
         }
     }

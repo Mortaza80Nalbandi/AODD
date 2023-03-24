@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     Character character;
     Score score;
     healthbar healthbarx;
-    
+    EnemyAI enemyAI;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
         shooters = new List<Shooter>();
         action = "move";
         score = GameObject.Find("CoreLoop").GetComponent<Score>();
+        enemyAI = GameObject.Find("EnemyBase").GetComponent<EnemyAI>();
         healthbarx = transform.GetChild(0).gameObject.GetComponent<healthbar>();
         healthbarx.setHealth(health,100);
     }
@@ -69,7 +70,7 @@ public class Enemy : MonoBehaviour
         }
         if(health<=0){
             score.increaseScore(5);
-            GameObject.Find("EnemyBase").GetComponent<EnemyAI>().killedenemy();
+            enemyAI.enemyDied();
             Destroy(gameObject);
         }
     }
