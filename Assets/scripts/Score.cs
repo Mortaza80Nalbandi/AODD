@@ -15,7 +15,7 @@ public class Score : MonoBehaviour
 
         commands = "\n press A and D to move\n";
         commands+="press F to attack when close range\n";
-        commands+="press Q for swordman and W for Shooter";
+        commands+="press Q for swordman(10R) and W for Shooter(5R)";
         GameObject.Find("Score").GetComponent<Text>().text = "Score : "+ score.ToString () + commands; 
 
     }
