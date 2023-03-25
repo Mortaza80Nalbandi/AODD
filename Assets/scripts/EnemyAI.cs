@@ -116,15 +116,21 @@ public class EnemyAI : MonoBehaviour
             killedEnemies = 0;
             killedEnemyArchers = 0;
             KilledTanks = 0;
-        } else if(killedEnemies>=30){
+        }
+        else if (killedEnemies >= 30)
+        {
             maxEnemies++;
-            killedEnemies=0;
-        }else if(killedEnemyArchers>=15){
+            killedEnemies = 0;
+        }
+        else if (killedEnemyArchers >= 15)
+        {
             maxArchers++;
-            killedEnemyArchers=0;
-        }else if(KilledTanks>=6){
+            killedEnemyArchers = 0;
+        }
+        else if (KilledTanks >= 6)
+        {
             maxTanks++;
-            KilledTanks=0;
+            KilledTanks = 0;
         }
     }
 }
