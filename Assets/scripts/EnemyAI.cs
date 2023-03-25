@@ -122,7 +122,7 @@ public class EnemyAI : MonoBehaviour
         }else if(killedEnemyArchers>=15){
             maxArchers++;
             killedEnemyArchers=0;
-        }else if(KilledTanks>=30){
+        }else if(KilledTanks>=6){
             maxTanks++;
             KilledTanks=0;
         }
