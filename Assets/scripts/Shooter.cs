@@ -15,6 +15,7 @@ public class Shooter : MonoBehaviour
     List<EnemyArcher> enemyArchers;
     bool baseSighted;
     healthbar healthbarx;
+    public GameObject bulletPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +51,8 @@ public class Shooter : MonoBehaviour
                     }
                     else
                     {
-                        tanks[0].damaged(damage);
+                        GameObject bullet = Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+                        bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.right*600);
                     }
                 }
                 else if (enemies.Count != 0)
@@ -61,7 +63,8 @@ public class Shooter : MonoBehaviour
                     }
                     else
                     {
-                        enemies[0].damaged(damage);
+                        GameObject bullet = Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+                        bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.right*600);
                     }
                 }
                 else if (enemyArchers.Count != 0)
@@ -73,7 +76,8 @@ public class Shooter : MonoBehaviour
                     }
                     else
                     {
-                        enemyArchers[0].damaged(damage);
+                        GameObject bullet = Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+                        bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.right*600);
                     }
                 }
                 else if (baseSighted)
@@ -115,10 +119,13 @@ public class Shooter : MonoBehaviour
             transform.Translate(-1 * speed, 0f, 0f);
             baseSighted = true;
             action = "stop";
+        }else if(collider2D.gameObject.tag == "Arrow"){
+            damaged(collider2D.gameObject.GetComponent<Bullet>().getDamage());
+            Destroy(collider2D.gameObject);
         }
     }
 
-    public void damaged(int damageReceived)
+    public void damaged(float damageReceived)
     {
         health -= damageReceived;
         healthbarx.setHealth(health, 100);

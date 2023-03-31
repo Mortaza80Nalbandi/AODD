@@ -119,6 +119,9 @@ public class Enemy : MonoBehaviour
             transform.Translate(speed, 0f, 0f);
             baseSighted = true;
             action = "stop";
+        } else if(collider2D.gameObject.tag == "bullet"){
+            damaged(collider2D.gameObject.GetComponent<Bullet>().getDamage());
+            Destroy(collider2D.gameObject);
         }
 
     }
@@ -129,7 +132,7 @@ public class Enemy : MonoBehaviour
             character = null;
         }
     }
-    public void damaged(int damageReceived)
+    public void damaged(float damageReceived)
     {
         health -= damageReceived;
         healthbarx.setHealth(health, 100);

@@ -85,10 +85,13 @@ public class swordsman : MonoBehaviour
             transform.Translate (-1*speed, 0f, 0f); 
             baseSighted =true;
             action = "stop";
+        }else if(collider2D.gameObject.tag == "Arrow"){
+            damaged(collider2D.gameObject.GetComponent<Bullet>().getDamage());
+            Destroy(collider2D.gameObject);
         }
 	}
 
-    public void damaged(int damageReceived){
+    public void damaged(float damageReceived){
         health-=damageReceived;
         healthbarx.setHealth(health,100);
     }

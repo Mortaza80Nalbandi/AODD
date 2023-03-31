@@ -16,6 +16,7 @@ public class EnemyArcher : MonoBehaviour
     Score score;
     healthbar healthbarx;
     EnemyAI enemyAI;
+    public GameObject bulletPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +54,8 @@ public class EnemyArcher : MonoBehaviour
                     }
                     else
                     {
-                        character.damaged(damage);
+                        GameObject bullet = Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+                        bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.left*600);
                     }
                 }
                 else if (swordmans.Count != 0)
@@ -65,7 +67,8 @@ public class EnemyArcher : MonoBehaviour
                     }
                     else
                     {
-                        swordmans[0].damaged(damage);
+                        GameObject bullet = Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+                        bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.left*600);
                     }
                 }
                 else if (shooters.Count != 0)
@@ -77,7 +80,8 @@ public class EnemyArcher : MonoBehaviour
                     }
                     else
                     {
-                        shooters[0].damaged(damage);
+                        GameObject bullet = Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+                        bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.left*600);
                     }
                 }
                 else
@@ -116,6 +120,9 @@ public class EnemyArcher : MonoBehaviour
         {
             transform.Translate(speed, 0f, 0f);
             action = "stop";
+        }else if(collider2D.gameObject.tag == "bullet"){
+            damaged(collider2D.gameObject.GetComponent<Bullet>().getDamage());
+            Destroy(collider2D.gameObject);
         }
 
     }
@@ -127,7 +134,7 @@ public class EnemyArcher : MonoBehaviour
             character = null;
         }
     }
-    public void damaged(int damageReceived)
+    public void damaged(float damageReceived)
     {
         health -= damageReceived;
         healthbarx.setHealth(health, 100);

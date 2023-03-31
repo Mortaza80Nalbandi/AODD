@@ -91,7 +91,7 @@ public class Character : MonoBehaviour
         if (health < 1000 && healingRate <= 0)
         {
             healingRate = 1;
-            health += 5;
+            health += 2;
         }
     }
     void OnTriggerEnter2D(Collider2D collider2D)
@@ -107,6 +107,9 @@ public class Character : MonoBehaviour
         else if (collider2D.gameObject.tag == "EnemyArcher")
         {
             enemyArchers.Add(collider2D.gameObject.transform.parent.gameObject.GetComponent<EnemyArcher>());
+        }else if(collider2D.gameObject.tag == "Arrow"){
+            damaged(collider2D.gameObject.GetComponent<Bullet>().getDamage());
+            Destroy(collider2D.gameObject);
         }
     }
 
@@ -125,7 +128,7 @@ public class Character : MonoBehaviour
             enemyArchers.Remove(collider2D.gameObject.transform.parent.gameObject.GetComponent<EnemyArcher>());
         }
     }
-    public void damaged(int damageReceived)
+    public void damaged(float damageReceived)
     {
         health -= damageReceived;
         healthbarx.setHealth(health, 1000);
