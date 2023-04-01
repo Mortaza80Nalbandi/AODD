@@ -11,6 +11,8 @@ TagManager:
   - EnemyArcher
   - MainBase
   - EnemyBase
+  - bullet
+  - Arrow
   layers:
   - Default
   - TransparentFX

@@ -1,11 +1,13 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - Bullet
     - Character
     - Enemy
     - EnemyAI
     - EnemyArcher
     - PlayerBaseController
+    - Resorces
     - Score
     - Shooter
     - Tank
@@ -71,31 +73,35 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2198}
     - Class: 114
-      Script: {instanceID: 2612}
+      Script: {instanceID: 2614}
     - Class: 114
-      Script: {instanceID: 2772}
+      Script: {instanceID: 2774}
     - Class: 114
-      Script: {instanceID: 2882}
+      Script: {instanceID: 2884}
     - Class: 114
-      Script: {instanceID: 3230}
+      Script: {instanceID: 2958}
     - Class: 114
-      Script: {instanceID: 3584}
+      Script: {instanceID: 3234}
     - Class: 114
-      Script: {instanceID: 3588}
+      Script: {instanceID: 3290}
     - Class: 114
-      Script: {instanceID: 3750}
+      Script: {instanceID: 3590}
     - Class: 114
-      Script: {instanceID: 4042}
+      Script: {instanceID: 3594}
     - Class: 114
-      Script: {instanceID: 4044}
+      Script: {instanceID: 3756}
     - Class: 114
-      Script: {instanceID: 4046}
+      Script: {instanceID: 4048}
     - Class: 114
-      Script: {instanceID: 4192}
+      Script: {instanceID: 4050}
     - Class: 114
-      Script: {instanceID: 4216}
+      Script: {instanceID: 4052}
     - Class: 114
-      Script: {instanceID: 4728}
+      Script: {instanceID: 4198}
+    - Class: 114
+      Script: {instanceID: 4222}
+    - Class: 114
+      Script: {instanceID: 4734}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -225,6 +231,12 @@ ScriptsOnlyBuild:
     className: Text
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Arrow
+  - hash:
+      serializedVersion: 2
       Hash: f1d735cc1a21c3704ab52568f4fbfcf8
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner
@@ -291,10 +303,16 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: f78af98ffc77f80da4ad878bd1c41cfa
+      Hash: 200848e6bf67b224f7344fe8aa2734c6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Shooter
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Bullet
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -357,6 +375,12 @@ ScriptsOnlyBuild:
     className: MarkerTrack
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Resorces
+  - hash:
+      serializedVersion: 2
       Hash: 8e6ceabfd38a184413d69b7db56c89cc
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools
@@ -393,13 +417,13 @@ ScriptsOnlyBuild:
     className: ContentSizeFitter
   - hash:
       serializedVersion: 2
-      Hash: f78af98ffc77f80da4ad878bd1c41cfa
+      Hash: 4bd337382d4a91deaacd5fa63349f9a0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Enemy
   - hash:
       serializedVersion: 2
-      Hash: 1222105a6f5884d6adb399ea8b33a4f8
+      Hash: ae0e607e01f7177faba36bb9587eb8e4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerBaseController
@@ -483,13 +507,13 @@ ScriptsOnlyBuild:
     className: Score
   - hash:
       serializedVersion: 2
-      Hash: f78af98ffc77f80da4ad878bd1c41cfa
+      Hash: 4bd337382d4a91deaacd5fa63349f9a0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Tank
   - hash:
       serializedVersion: 2
-      Hash: f78af98ffc77f80da4ad878bd1c41cfa
+      Hash: 200848e6bf67b224f7344fe8aa2734c6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemyArcher
@@ -525,7 +549,7 @@ ScriptsOnlyBuild:
     className: ActivationTrack
   - hash:
       serializedVersion: 2
-      Hash: f78af98ffc77f80da4ad878bd1c41cfa
+      Hash: 4bd337382d4a91deaacd5fa63349f9a0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: swordsman
@@ -621,7 +645,7 @@ ScriptsOnlyBuild:
     className: SpriteSkinEntity
   - hash:
       serializedVersion: 2
-      Hash: c7a1cfbcd815f35b6700d8538ef4094e
+      Hash: c4e17c1f6352497cc7f8ce6fe59ea046
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Character
