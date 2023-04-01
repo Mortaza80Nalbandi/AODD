@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Character : MonoBehaviour
 {
     public float health;
     private float maxHealth = 1000;
     float attackrate;
+    float superAttackrate;
     float healingRate;
     int damage;
     float speed = 0.06f;
@@ -21,6 +22,7 @@ public class Character : MonoBehaviour
         damage = 5;
         speed = 0.06f;
         attackrate = 1;
+        superAttackrate=5;
         healingRate = 1;
         enemies = new List<Enemy>();
         tanks = new List<Tank>();
@@ -40,7 +42,7 @@ public class Character : MonoBehaviour
         {
             transform.Translate(-1 * speed, 0f, 0f);
         }
-        else if (Input.GetKey(KeyCode.F))
+        else if (Input.GetKey(KeyCode.E))
         {
             if (attackrate <= 0)
             {
@@ -81,12 +83,32 @@ public class Character : MonoBehaviour
                 }
                 attackrate = 1;
             }
+        }else if(Input.GetKey(KeyCode.F)){
+            if(superAttackrate<0){
+                foreach(Enemy enemy in enemies){
+                    enemy.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.right*200);
+                    enemy.pushed();
+                    enemy.damaged(damage*4);
+                }
+                foreach(EnemyArcher enemyArcher in enemyArchers){
+                    enemyArcher.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.right*30);
+                    enemyArcher.damaged(damage*4);
+                }
+                foreach(Tank tank in tanks){
+                    tank.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.right*30);
+                    tank.damaged(damage*4);
+                }
+                superAttackrate=5;
+
+            }
+            
         }
         attackrate -= Time.deltaTime;
         healingRate -= Time.deltaTime;
+        superAttackrate-= Time.deltaTime;
         if (health <= 0)
         {
-            Destroy(gameObject);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         if (health < 1000 && healingRate <= 0)
         {

@@ -17,6 +17,7 @@ public class EnemyArcher : MonoBehaviour
     healthbar healthbarx;
     EnemyAI enemyAI;
     public GameObject bulletPrefab;
+    float pushTime = 2;
     // Start is called before the first frame update
     void Start()
     {
@@ -92,11 +93,22 @@ public class EnemyArcher : MonoBehaviour
             }
             attackrate -= Time.deltaTime;
         }
+        
         if (health <= 0)
         {
             score.increaseScore(8);
             enemyAI.archerDied();
             Destroy(gameObject);
+        }
+        if(pushTime<=0.5){
+            pushTime-= Time.deltaTime;
+            action = "stop";
+        }
+        if(pushTime<=0){
+            gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            gameObject.GetComponent<Rigidbody2D>().angularVelocity = 0;
+            pushTime =1f;
+            action = "move";
         }
     }
     void OnTriggerEnter2D(Collider2D collider2D)
@@ -132,12 +144,23 @@ public class EnemyArcher : MonoBehaviour
         if (collider2D.gameObject.tag == "Player")
         {
             character = null;
+        }else if (collider2D.gameObject.tag == "AllySoldier")
+        {
+            swordmans.Remove(collider2D.gameObject.GetComponent<swordsman>());
+        }else if (collider2D.gameObject.tag == "AllyShooter")
+        {
+            shooters.Remove(collider2D.gameObject.transform.parent.gameObject.GetComponent<Shooter>());
         }
+         action="move";
     }
     public void damaged(float damageReceived)
     {
         health -= damageReceived;
         healthbarx.setHealth(health, 100);
+    }
+    public void pushed(){
+        pushTime = 0.5f;
+        
     }
     public float getHealth()
     {

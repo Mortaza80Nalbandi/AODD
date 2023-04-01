@@ -90,6 +90,22 @@ public class swordsman : MonoBehaviour
             Destroy(collider2D.gameObject);
         }
 	}
+    void OnTriggerExit2D(Collider2D collider2D)
+    {
+        if (collider2D.gameObject.tag == "EnemySoldier")
+        {
+            enemies.Remove(collider2D.gameObject.GetComponent<Enemy>());
+        }
+        else if (collider2D.gameObject.tag == "EnemyTank")
+        {
+            tanks.Remove(collider2D.gameObject.GetComponent<Tank>());
+        }
+        else if (collider2D.gameObject.tag == "EnemyArcher")
+        {
+            enemyArchers.Remove(collider2D.gameObject.transform.parent.gameObject.GetComponent<EnemyArcher>());
+        }
+         action="move";
+    }
 
     public void damaged(float damageReceived){
         health-=damageReceived;
