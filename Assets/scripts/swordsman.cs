@@ -104,7 +104,6 @@ public class swordsman : MonoBehaviour
         {
             enemyArchers.Remove(collider2D.gameObject.transform.parent.gameObject.GetComponent<EnemyArcher>());
         }
-         action="move";
     }
 
     public void damaged(float damageReceived){

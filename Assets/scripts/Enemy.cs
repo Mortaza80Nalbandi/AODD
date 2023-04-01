@@ -148,7 +148,6 @@ public class Enemy : MonoBehaviour
         {
             shooters.Remove(collider2D.gameObject.transform.parent.gameObject.GetComponent<Shooter>());
         }
-         action="move";
     }
     public void damaged(float damageReceived)
     {
